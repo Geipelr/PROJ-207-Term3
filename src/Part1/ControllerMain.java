@@ -22,7 +22,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.sql.*;
 
@@ -60,9 +59,9 @@ public class ControllerMain {
 
             // retrieve agent
             try {
-                Connection conn =
-                        DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts",
-                                "Geipelr", passwd);
+                //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "Geipelr", passwd);
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "harv", "password");
+
                 PreparedStatement stmt =
                         conn.prepareStatement("select AgncyAddress, AgncyCity, " +
                                 "AgncyCountry, AgncyFax, AgncyPhone, " +
@@ -141,9 +140,9 @@ public class ControllerMain {
 
             if (agencyNew != null) {
                 try {
-                    Connection conn =
-                            DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts",
-                                    "Geipelr", passwd);
+                    //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "Geipelr", passwd);
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "harv", "password");
+
                     PreparedStatement stmt =
                             conn.prepareStatement("UPDATE agencies " +
                                     "SET AgncyAddress = ?, AgncyCity = ?, " +
@@ -190,8 +189,9 @@ public class ControllerMain {
         // read agent Ids from the database
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts","Geipelr",
-                    passwd );
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts","harv",
+                    "password" );
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts","Geipelr",passwd );
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select AgencyId from agencies");
             while (rs.next())
@@ -218,9 +218,10 @@ public class ControllerMain {
 
                 // retrieve agent
                 try {
-                    Connection conn =
-                            DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts",
-                                    "Geipelr", passwd );
+                    //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "Geipelr", passwd );
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "harv", "password" );
+
+
                     PreparedStatement stmt =
                             conn.prepareStatement("select AgncyAddress, AgncyCity, " +
                                     "AgncyCountry, AgncyFax, AgncyPhone, " +
@@ -301,9 +302,9 @@ public class ControllerMain {
                 if (agencyNew != null)
                 {
                     try {
-                        Connection conn =
-                                DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts",
-                                        "Geipelr", passwd );
+                        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "Geipelr", passwd );
+                        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "harv", "password" );
+
                         PreparedStatement stmt =
                                 conn.prepareStatement("UPDATE agencies " +
                                         "SET AgncyAddress = ?, AgncyCity = ?, " +
@@ -368,9 +369,9 @@ public class ControllerMain {
                 if (agencyNew != null)
                 {
                     try {
-                        Connection conn =
-                                DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts",
-                                        "Geipelr", passwd );
+                        //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "Geipelr", passwd );
+                        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "harv", "password" );
+
                         PreparedStatement stmt =
                                 conn.prepareStatement("INSERT INTO `agencies` (`AgncyAddress`, `AgncyCity`, " +
                                                           "`AgncyCountry`, `AgncyFax`, `AgncyPhone`, " +
