@@ -21,7 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class ControllerAddEdit  {
+public class ControllerAddEdit {
 
     @FXML
     private GridPane gp;
