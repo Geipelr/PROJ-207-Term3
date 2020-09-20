@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,7 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class ControllerAddEdit {
+public class ControllerAddEdit  {
 
     @FXML
     private GridPane gp;
@@ -79,20 +80,25 @@ public class ControllerAddEdit {
     @FXML
     private Button btnCancel;
 
-    // private Agency Id
-    private int i;
+    // Agency
+    private Agency agency;
 
     // used to set Id from main window
-    public void setI(int i) {
-        this.i = i;
+    public void setAgency(Agency agency) {
+        this.agency = agency;
     }
 
-    // mode (edit/add) ... dialog window is used for editing and adding
+    // stores user action (cancelled/confirmed)
+    private boolean cancelled = true;
+
+    // mode (edit/add) ... dialog window is used for editing and adding ... false: edit mode
     private boolean mode;
 
     public void setMode(boolean mode) {
         this.mode = mode;
     }
+
+
 
     @FXML
     void initialize() {
@@ -114,30 +120,72 @@ public class ControllerAddEdit {
         assert btnCancel != null : "fx:id=\"btnCancel\" was not injected: check your FXML file 'addEditAgency.fxml'.";
 
 
-        // determine stage
-//        Window stage =  tfCity.getScene().getWindow();
-        // set stage title depending on mode
-/*
-        if (mode)
-            // adding mode
-            stage.setTitle("Add Agencies");
-        else
-            // editing mode
-            stage.setTitle("Edit Agencies");
-*/
-
-
-
         btnCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 // exit without saving
                 Node source = (Node)  mouseEvent.getSource();
                 Stage stage  = (Stage) source.getScene().getWindow();
+                // save user action
+                cancelled = true;
                 stage.close();
             }
         });
 
+        btnConfirm.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                // exit with saving
+                Node source = (Node)  mouseEvent.getSource();
+                Stage stage  = (Stage) source.getScene().getWindow();
+                // save user action
+                cancelled = false;
+                // Agency Address
+                agency.setAgncyAddress(tfAddress.getText());
+                // Agency City
+                agency.setAgncyCity(tfCity.getText());
+                // Agency Country
+                agency.setAgncyCountry(tfCountry.getText());
+                // Agency fax
+                agency.setAgncyFax(tfFax.getText());
+                // Agency phone
+                agency.setAgncyPhone(tfPhone.getText());
+                // Agency postal
+                agency.setAgncyPostal(tfPostal.getText());
+                // Agency province
+                agency.setAgncyProv(tfProv.getText());
 
+                stage.close();
+            }
+        });
+
+    }
+
+    public void setFields() {
+        // only if in edit mode
+        if (!mode && agency !=  null)
+        {
+        // Agency Address
+            tfAddress.setText(agency.getAgncyAddress());
+        // Agency City
+            tfCity.setText(agency.getAgncyCity());
+        // Agency Country
+            tfCountry.setText(agency.getAgncyCountry());
+        // Agency fax
+            tfFax.setText(agency.getAgncyFax());
+        // Agency phone
+            tfPhone.setText(agency.getAgncyPhone());
+        // Agency postal
+            tfPostal.setText(agency.getAgncyPostal());
+        // Agency province
+            tfProv.setText(agency.getAgncyProv());
+        }
+    }
+
+
+    public Agency getReturn() {
+        if (!cancelled) {
+            return agency;
+        } else return null;
     }
 }

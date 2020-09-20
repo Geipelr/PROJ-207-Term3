@@ -38,71 +38,15 @@ public class ControllerMain {
     @FXML
     private ComboBox<Integer> cmbAgencyId;
 
-    @FXML
-    private Label lblAddress;
-
-    @FXML
-    private Label lblCity;
-
-    @FXML
-    private Label lblCountry;
-
-    @FXML
-    private Label lblPhone;
-
-    @FXML
-    private Label lblPostal;
-
-    @FXML
-    private Label lblProv;
-
-    @FXML
-    private TextField tfAddress;
-
-    @FXML
-    private TextField tfCity;
-
-    @FXML
-    private TextField tfCountry;
-
-    @FXML
-    private TextField tfFax;
-
-    @FXML
-    private TextField tfPhone;
-
-    @FXML
-    private TextField tfPostal;
-
-    @FXML
-    private TextField tfProv;
-
-    @FXML
-    private Button btnEdit;
-
-    @FXML
-    private Button btnSave;
-
+    // selected agency Id
     private Integer i;
+
+    // Agency object
+    private Agency agency;
 
     @FXML
     void initialize() {
         assert cmbAgencyId != null : "fx:id=\"cmbAgencyId\" was not injected: check your FXML file 'sample.fxml'.";
-        assert lblAddress != null : "fx:id=\"lblAddress\" was not injected: check your FXML file 'sample.fxml'.";
-        assert lblCity != null : "fx:id=\"lblCity\" was not injected: check your FXML file 'sample.fxml'.";
-        assert lblCountry != null : "fx:id=\"lblCountry\" was not injected: check your FXML file 'sample.fxml'.";
-        assert lblPhone != null : "fx:id=\"lblPhone\" was not injected: check your FXML file 'sample.fxml'.";
-        assert lblPostal != null : "fx:id=\"lblPostal\" was not injected: check your FXML file 'sample.fxml'.";
-        assert lblProv != null : "fx:id=\"lblProv\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tfAddress != null : "fx:id=\"tfAddress\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tfCity != null : "fx:id=\"tfCity\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tfCountry != null : "fx:id=\"tfCountry\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tfFax != null : "fx:id=\"tfFax\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tfPhone != null : "fx:id=\"tfPhone\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tfPostal != null : "fx:id=\"tfPostal\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tfProv != null : "fx:id=\"tfProv\" was not injected: check your FXML file 'sample.fxml'.";
-        assert btnEdit != null : "fx:id=\"btnEdit\" was not injected: check your FXML file 'sample.fxml'.";
-        assert btnSave != null : "fx:id=\"btnSave\" was not injected: check your FXML file 'sample.fxml'.";
 
         // combo box list
         ArrayList<Integer> agencyList = new ArrayList<>(10);
@@ -110,7 +54,7 @@ public class ControllerMain {
         // read agent Ids from the database
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts","Geipelr", "" );
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts","Geipelr", "Moni!a14" );
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select AgencyId from agencies");
             while (rs.next())
@@ -135,34 +79,14 @@ public class ControllerMain {
                 // get selected Agent Id
                 i = cmbAgencyId.getSelectionModel().getSelectedItem();
 
-                // set modal dialog
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addEditAgency.fxml"));
-                Parent parent = null;
-                try {
-                    parent = fxmlLoader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                ControllerAddEdit dialogController = fxmlLoader.<ControllerAddEdit>getController();
-                dialogController.setI(i);
-                dialogController.setMode(false);
-
-                Scene scene = new Scene(parent, 600, 400);
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setScene(scene);
-                stage.showAndWait();
-
-                // sets scene and stage - title will be set in modal dialog controller
-
                 // retrieve agent
-                /*try {
+                try {
                     Connection conn =
                             DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts",
                                     "Geipelr", "Moni!a14" );
                     PreparedStatement stmt =
                             conn.prepareStatement("select AgncyAddress, AgncyCity, " +
-                                    "AgncyCity, AgncyCountry, AgncyFax, AgncyPhone, " +
+                                    "AgncyCountry, AgncyFax, AgncyPhone, " +
                                     "AgncyPostal, AgncyProv " +
                                     "from agencies where AgencyId = ?");
 
@@ -171,38 +95,40 @@ public class ControllerMain {
                     stmt.setInt(1, i);
                     // get agent from data base
                     ResultSet rs = stmt.executeQuery();
+                    // agency object will be kept in sync with data base
+                    agency = new Agency();
                     // process columns
                     while (rs.next())
                     {
                         for (int j = 1; j <= 8; j++) {
                             switch (j) {
-                                // AgtFirstName
+                                // Agency Address
                                 case 1:
-                                    tfAddress.setText(rs.getString(j));
+                                    agency.setAgncyAddress(rs.getString(j));
                                     break;
-                                // AgtLastName
+                                // Agency City
                                 case 2:
-                                    tfCity.setText(rs.getString(j));
+                                    agency.setAgncyCity(rs.getString(j));
                                     break;
                                 case 3:
-                                    // Agent Id
-                                    tfCountry.setText(rs.getString(j));
+                                    // Agency Country
+                                    agency.setAgncyCountry(rs.getString(j));
                                     break;
-                                // Middle Initial
+                                // Agency fax
                                 case 4:
-                                    tfFax.setText(rs.getString(j));
+                                    agency.setAgncyFax(rs.getString(j));
                                     break;
-                                // Email
+                                // Agency phone
                                 case 5:
-                                    tfPhone.setText(rs.getString(j));
+                                    agency.setAgncyPhone(rs.getString(j));
                                     break;
                                 case 6:
-                                    // Business Phone
-                                    tfPostal.setText(rs.getString(j));
+                                    // Agency postal
+                                    agency.setAgncyPostal(rs.getString(j));
                                     break;
-                                // Agency Id
+                                // Agency province
                                 case 7:
-                                    tfProv.setText(rs.getString(j));
+                                    agency.setAgncyProv(rs.getString(j));
                                     break;
                             }
                         }
@@ -211,49 +137,32 @@ public class ControllerMain {
 
                 } catch (SQLException e) {
                     e.printStackTrace();
-                }*/
-            }
-        });
-
-        btnEdit.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                // check if agent id selected
-                if (i > 0) {
-                    // make text fields editable
-                    tfAddress.setEditable(true);
-                    tfCity.setEditable(true);
-                    tfProv.setEditable(true);
-                    tfCountry.setEditable(true);
-                    tfFax.setEditable(true);
-                    tfPhone.setEditable(true);
-                    tfPostal.setEditable(true);
-                    // enable save-button
-                    btnSave.setDisable(false);
-                    // disable edit-button
-                    btnEdit.setDisable(true);
                 }
-            }
-        });
 
-        btnSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                // check if agent id selected
-                if (i > 0) {
-                    // make text fields editable
-                    tfAddress.setEditable(false);
-                    tfCity.setEditable(false);
-                    tfCountry.setEditable(false);
-                    tfProv.setEditable(false);
-                    tfPhone.setEditable(false);
-                    tfFax.setEditable(false);
-                    tfProv.setEditable(false);
-                    // disable save-button
-                    btnSave.setDisable(true);
-                    // enable edit-button
-                    btnEdit.setDisable(false);
+                // load fxml-file for modal dialog
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addEditAgency.fxml"));
+                Parent parent = null;
+                try {
+                    parent = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                // set controller
+                ControllerAddEdit dialogController = fxmlLoader.<ControllerAddEdit>getController();
+                dialogController.setAgency(agency);
+                dialogController.setMode(false);
+                dialogController.setFields();
 
+                // set scene and stage and show
+                Scene scene = new Scene(parent, 600, 400);
+                MyStage myStage = new MyStage();
+                myStage.initModality(Modality.APPLICATION_MODAL);
+                myStage.setScene(scene);
+                myStage.setTitle("Edit Agency");
+                Agency agencyNew = myStage.showAndReturn(dialogController);
+
+                if (agencyNew != null)
+                {
                     try {
                         Connection conn =
                                 DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts",
@@ -263,18 +172,19 @@ public class ControllerMain {
                                         "SET AgncyAddress = ?, AgncyCity = ?, " +
                                         "AgncyCountry = ?, " +
                                         "AgncyFax = ?, AgncyPhone = ?, " +
-                                        "AgncyPostal = ? " +
+                                        "AgncyPostal = ?, AgncyProv = ? " +
                                         "WHERE AgencyId = ?");
 
 
                         // assign selected Agent Id, first and last name to prepared statement
-                        stmt.setString(1, tfAddress.getText());
-                        stmt.setString(2, tfCity.getText());
-                        stmt.setString(3, tfCountry.getText());
-                        stmt.setString(4, tfFax.getText());
-                        stmt.setString(5, tfPhone.getText());
-                        stmt.setString(6, tfPostal.getText());
-                        stmt.setInt(7, i);
+                        stmt.setString(1, agencyNew.getAgncyAddress());
+                        stmt.setString(2, agencyNew.getAgncyCity());
+                        stmt.setString(3, agencyNew.getAgncyCountry());
+                        stmt.setString(4, agencyNew.getAgncyFax());
+                        stmt.setString(5, agencyNew.getAgncyPhone());
+                        stmt.setString(6, agencyNew.getAgncyPostal());
+                        stmt.setString(7, agencyNew.getAgncyProv());
+                        stmt.setInt(8, i);
                         // update record
                         boolean success = stmt.execute();
                         if (success)
@@ -284,6 +194,7 @@ public class ControllerMain {
                         else
                         {
                             System.out.println("UPDATED");
+                            agency = agencyNew;
                         }
                         conn.close();
 
@@ -293,6 +204,5 @@ public class ControllerMain {
                 }
             }
         });
-
     }
 }

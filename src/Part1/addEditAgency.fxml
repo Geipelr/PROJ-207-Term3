@@ -52,35 +52,35 @@
         </VBox>
         <VBox prefHeight="218.0" prefWidth="222.0" GridPane.columnIndex="2">
             <children>
-                <TextField fx:id="tfAddress" editable="false" minHeight="-Infinity" minWidth="-Infinity">
+                <TextField fx:id="tfAddress" minHeight="-Infinity" minWidth="-Infinity">
                     <VBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                     </VBox.margin></TextField>
-                <TextField fx:id="tfCity" editable="false" minHeight="-Infinity" minWidth="-Infinity">
+                <TextField fx:id="tfCity" minHeight="-Infinity" minWidth="-Infinity">
                     <VBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                     </VBox.margin></TextField>
-                <TextField fx:id="tfCountry" editable="false" layoutX="10.0" layoutY="36.0" minHeight="-Infinity" minWidth="-Infinity">
+                <TextField fx:id="tfCountry" layoutX="10.0" layoutY="36.0" minHeight="-Infinity" minWidth="-Infinity">
                     <VBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                     </VBox.margin>
                 </TextField>
-                <TextField fx:id="tfFax" editable="false" layoutX="10.0" layoutY="61.0" minHeight="-Infinity" minWidth="-Infinity">
+                <TextField fx:id="tfFax" layoutX="10.0" layoutY="61.0" minHeight="-Infinity" minWidth="-Infinity">
                     <VBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                     </VBox.margin>
                 </TextField>
-                <TextField fx:id="tfPhone" editable="false" layoutX="10.0" layoutY="87.0" minHeight="-Infinity" minWidth="-Infinity">
+                <TextField fx:id="tfPhone" layoutX="10.0" layoutY="87.0" minHeight="-Infinity" minWidth="-Infinity">
                     <VBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                     </VBox.margin>
                 </TextField>
-                <TextField fx:id="tfPostal" editable="false" layoutX="10.0" layoutY="112.0" minHeight="-Infinity" minWidth="-Infinity">
+                <TextField fx:id="tfPostal" layoutX="10.0" layoutY="112.0" minHeight="-Infinity" minWidth="-Infinity">
                     <VBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                     </VBox.margin>
                 </TextField>
-                <TextField fx:id="tfProv" editable="false" layoutX="10.0" layoutY="138.0" minHeight="-Infinity" minWidth="-Infinity">
+                <TextField fx:id="tfProv" layoutX="10.0" layoutY="138.0" minHeight="-Infinity" minWidth="-Infinity">
                     <VBox.margin>
                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                     </VBox.margin>
@@ -88,7 +88,7 @@
             </children>
         </VBox>
         <Button fx:id="btnConfirm" mnemonicParsing="false" text="Confirm" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     </children>
     <columnConstraints>
         <ColumnConstraints />
