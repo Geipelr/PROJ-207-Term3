@@ -19,7 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class ControllerAddEdit  {
+public class ControllerAddEdit {
 
     @FXML
     private GridPane gp;
