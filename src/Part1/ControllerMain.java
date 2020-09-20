@@ -50,7 +50,7 @@ public class ControllerMain {
     // Agency object
     private Agency agency;
 
-    private String passwd = "";
+    private String passwd = "Moni!a14";
 
     private EventHandler eventHandler = new EventHandler<ActionEvent>() {
         @Override
