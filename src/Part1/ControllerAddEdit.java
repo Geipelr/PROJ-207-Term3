@@ -140,6 +140,9 @@ public class ControllerAddEdit  {
                 Stage stage  = (Stage) source.getScene().getWindow();
                 // save user action
                 cancelled = false;
+                // in adding mode
+                if (agency == null)
+                    agency = new Agency();
                 // Agency Address
                 agency.setAgncyAddress(tfAddress.getText());
                 // Agency City
