@@ -1142,7 +1142,7 @@ public class Controller {
             }
         });
 
-        // -----------------------------------------------------------------------------------------
+        // --------------------------------------------------------------------------//
         //Code for Customer //By Suvanjan Shrestha
         //set visibility and disable text field
         disableTextfield();
