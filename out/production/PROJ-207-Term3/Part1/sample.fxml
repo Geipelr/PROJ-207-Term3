@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Part1.Controller">
+  <tabs>
+      <Tab fx:id="tabAgency" text="Agency">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <GridPane prefHeight="369.0" prefWidth="600.0">
+                     <children>
+                        <VBox alignment="TOP_RIGHT">
+                           <children>
+                              <ComboBox fx:id="cmbAgencyId" prefWidth="150.0" promptText="Select Agency Id" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnAdd" mnemonicParsing="false" text="Add" GridPane.rowIndex="3" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="tabAgent" text="Agent">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </Tab>
+      <Tab fx:id="tabSupplier" text="Supplier">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="578.0">
+               <children>
+                  <VBox layoutX="4.0" layoutY="4.0" prefHeight="344.0" prefWidth="89.0">
+                     <children>
+                        <HBox prefHeight="39.0" prefWidth="94.0">
+                           <children>
+                              <Label text="Supplier">
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Button fx:id="btnAddSupplier" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="30.0" text="+" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <ComboBox fx:id="cmbSupplier" prefHeight="26.0" prefWidth="98.0" />
+                        <HBox prefHeight="17.0" prefWidth="90.0" />
+                        <HBox prefHeight="46.0" prefWidth="90.0">
+                           <children>
+                              <Label text="Contact">
+                                 <HBox.margin>
+                                    <Insets left="7.0" top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Button fx:id="btnAddContact" mnemonicParsing="false" text="+">
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="13.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <ComboBox fx:id="cmbContact" prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                     </children>
+                  </VBox>
+                  <Line endX="101.5999755859375" endY="365.8000183105469" layoutX="-6.0" layoutY="3.0" startX="101.5999755859375" startY="-2.9999871253967285" />
+                  <VBox layoutX="96.0" layoutY="7.0" prefHeight="354.0" prefWidth="498.0">
+                     <children>
+                        <HBox prefHeight="94.0" prefWidth="498.0">
+                           <children>
+                              <VBox prefHeight="79.0" prefWidth="130.0">
+                                 <children>
+                                    <Label text="Supplier ID #:">
+                                       <VBox.margin>
+                                          <Insets left="10.0" top="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="Company Name:">
+                                       <VBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="79.0" prefWidth="218.0">
+                                 <children>
+                                    <TextField fx:id="tfSupplierId">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfCompany" />
+                                 </children>
+                              </VBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="184.0">
+                                 <children>
+                                    <Button fx:id="btnEditSupplier" mnemonicParsing="false" text="Edit">
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="btnSaveSupplier" mnemonicParsing="false" text="Save">
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <Line endX="398.49285888671875" endY="-0.7427154779434204" startX="-100.0" />
+                        <HBox prefHeight="236.0" prefWidth="498.0">
+                           <children>
+                              <VBox prefHeight="224.0" prefWidth="89.0">
+                                 <children>
+                                    <Label text="Contact Id #:">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="16.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="First Name:">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="11.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="10.0" text="Last Name:">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="45.0" text="Address:">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="63.0" text="City:">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="11.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="80.0" text="Province">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="11.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="98.0" text="Postal Code:">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="116.0" text="Country:">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="11.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="237.0" prefWidth="153.0">
+                                 <children>
+                                    <TextField fx:id="tfContactId">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConFirstName" layoutX="10.0" layoutY="10.0">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConLastName" layoutX="10.0" layoutY="36.0">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConAddress" layoutX="10.0" layoutY="87.0">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConCity" layoutX="10.0" layoutY="112.0">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConProvince" layoutX="10.0" layoutY="102.0">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConPostal" layoutX="10.0" layoutY="120.0">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConCountry" layoutX="10.0" layoutY="139.0">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="237.0" prefWidth="98.0">
+                                 <children>
+                                    <Label text="Supplier ID#: ">
+                                       <VBox.margin>
+                                          <Insets left="20.0" top="16.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="Company:">
+                                       <VBox.margin>
+                                          <Insets left="20.0" top="16.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="Phone:">
+                                       <VBox.margin>
+                                          <Insets left="20.0" top="20.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="Fax:">
+                                       <VBox.margin>
+                                          <Insets left="20.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="Email:">
+                                       <VBox.margin>
+                                          <Insets left="20.0" top="12.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="URL:">
+                                       <VBox.margin>
+                                          <Insets left="20.0" top="11.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="Affiliation:">
+                                       <VBox.margin>
+                                          <Insets left="20.0" top="12.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="237.0" prefWidth="188.0">
+                                 <children>
+                                    <ComboBox fx:id="cmbConSupplier" prefWidth="150.0">
+                                       <VBox.margin>
+                                          <Insets top="12.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <TextField fx:id="tfConCompany">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConPhone">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConFax">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConEmail">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="tfConURL">
+                                       <font>
+                                          <Font size="11.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <ComboBox fx:id="cmbAffiliation" prefWidth="150.0">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </ComboBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="99.0" prefWidth="137.0">
+                                       <children>
+                                          <Button fx:id="btnEditContact" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Edit">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="45.0" right="10.0" top="15.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button fx:id="btnSaveContact" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Save">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="tabCustomer" text="Customer">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
