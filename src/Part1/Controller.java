@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-
+//-----------------------------------------------------------------------------------------
 public class Controller {
 
     //Variable and Objects for Customer //By Suvanjan Shrestha
@@ -87,7 +87,7 @@ public class Controller {
     @FXML
     private ComboBox<Agent> cbAgentId;
 
-
+    // -------------------------------------------------------------------------------
 
     //Supplier Variables
     int indexSupp;
@@ -211,6 +211,7 @@ public class Controller {
 
     @FXML
     private Button btnSaveContact;
+//-------------------------------------------------------------------------------------------------------
 
     private EventHandler eventHandler = new EventHandler<ActionEvent>() {
         @Override
@@ -339,6 +340,7 @@ public class Controller {
         }
     };
 
+//---------------------------------------------------------------------------------------------------------
 
 
     @FXML
@@ -398,6 +400,7 @@ public class Controller {
         assert tfCustEmail != null : "fx:id=\"tfCustEmail\" was not injected: check your FXML file 'custdisplay.fxml'.";
         assert cbAgentId != null : "fx:id=\"cbAgentId\" was not injected: check your FXML file 'custdisplay.fxml'.";
 
+        // ---------------------------------------------------------------------------------------------------
         //Buttons Visibility
         btnSaveSupplier.setVisible(false);
         btnEditSupplier.setVisible(false);
@@ -1062,6 +1065,7 @@ public class Controller {
             }
         });
 
+        // ------------------------------------------------------
         btnAdd.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -1138,7 +1142,7 @@ public class Controller {
             }
         });
 
-
+        // -----------------------------------------------------------------------------------------
         //Code for Customer //By Suvanjan Shrestha
         //set visibility and disable text field
         disableTextfield();
@@ -1161,6 +1165,7 @@ public class Controller {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        //---------------------------------------------------------
 
         //Populate AgentsId combobox (Customer) //By Suvanjan Shrestha
         Connection agentConn = connectDB();
@@ -1178,6 +1183,7 @@ public class Controller {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        //---------------------------------------------------------
 
         //Populate the form (Customer)  //By Suvanjan Shrestha
         cbCustomers.getSelectionModel().selectedItemProperty().addListener((observableValue, customer, t1) -> {
@@ -1207,6 +1213,7 @@ public class Controller {
                 clearTexts();
             }
         });
+        //---------------------------------------------------------
 
         //Edit button function (Customer)   //By Suvanjan Shrestha
         btnEditCust.setOnMouseClicked(mouseEvent -> {
@@ -1215,6 +1222,7 @@ public class Controller {
             btnEditCust.setDisable(true);
             btnAddCust.setDisable(false);
         });
+        //---------------------------------------------------------
 
         //Add button function (Customer)    //By Suvanjan Shrestha
         btnAddCust.setOnMouseClicked(mouseEvent -> {
@@ -1228,6 +1236,7 @@ public class Controller {
             tfCustFname.requestFocus();
         });
 
+        //---------------------------------------------------------
 
         // Done button function for saving new customer     //By Suvanjan Shrestha
         btnDone.setOnMouseClicked(mouseEvent -> {
@@ -1298,6 +1307,7 @@ public class Controller {
                 throwables.printStackTrace();
             }
         });
+        //---------------------------------------------------------
 
         //Save button function (Customer)   //By Suvanjan Shrestha
         btnSaveCust.setOnMouseClicked(mouseEvent -> {
@@ -1356,6 +1366,7 @@ public class Controller {
         });
 
     }
+    //---------------------------------------------------------
 
     //Connection to the database
     private Connection connectDB() {
@@ -1368,6 +1379,8 @@ public class Controller {
         }
         return c;
     }
+    //---------------------------------------------------------
+
     //method to disable text fields from Contact
     private void disableContactTextFields(boolean b)
     {
@@ -1387,6 +1400,7 @@ public class Controller {
         tfConURL.setDisable(b);
     }
 
+    //---------------------------------------------------------
 
     //Function to disable text fields in Customer form  //By Suvanjan Shrestha
     private void disableTextfield(){
@@ -1403,6 +1417,7 @@ public class Controller {
         tfCustEmail.setDisable(true);
         cbAgentId.setDisable(true);
     }
+    //---------------------------------------------------------
 
     //Function to enable text fields in Customer form   //By Suvanjan Shrestha
     private void enableTextfield(){
@@ -1418,7 +1433,7 @@ public class Controller {
         tfCustEmail.setDisable(false);
         cbAgentId.setDisable(false);
     }
-
+    //---------------------------------------------------------
     //Function to default text fields and combobox in Customer form //By Suvanjan Shrestha
     private void clearTexts(){
         tfCusId.clear();
