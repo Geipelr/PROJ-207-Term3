@@ -15,10 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 
@@ -32,11 +29,72 @@ import java.util.ResourceBundle;
 
 
 public class Controller {
+
+    //Variable and Objects for Customer //By Suvanjan Shrestha
+    int agentIndex;
+
+    @FXML
+    private ComboBox<Customer> cbCustomers;
+
+    @FXML
+    private Button btnAddCust;
+
+    @FXML
+    private Button btnEditCust;
+
+    @FXML
+    private Button btnSaveCust;
+
+    @FXML
+    private Button btnDone;
+
+    @FXML
+    private Button btnCancel;
+
+    @FXML
+    private TextField tfCusId;
+
+    @FXML
+    private TextField tfCustFname;
+
+    @FXML
+    private TextField tfCustLname;
+
+    @FXML
+    private TextField tfCustAddress;
+
+    @FXML
+    private TextField tfCustCity;
+
+    @FXML
+    private TextField tfCustProv;
+
+    @FXML
+    private TextField tfCustPostal;
+
+    @FXML
+    private TextField tfCustCountry;
+
+    @FXML
+    private TextField tfCustHomePhone;
+
+    @FXML
+    private TextField tfCustBusPhone;
+
+    @FXML
+    private TextField tfCustEmail;
+
+    @FXML
+    private ComboBox<Agent> cbAgentId;
+
+
+
     //Supplier Variables
     int indexSupp;
     int indexAffi;
     boolean newSupplier;
     boolean newContact;
+
 
     //Agency Variables
     // agency list in combo box
@@ -319,6 +377,26 @@ public class Controller {
         //agency
         assert cmbAgencyId != null : "fx:id=\"cmbAgencyId\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnAdd != null : "fx:id=\"btnAdd\" was not injected: check your FXML file 'mainAgency.fxml'.";
+
+        //Customer  //By Suvanjan Shrestha
+        assert cbCustomers != null : "fx:id=\"cbCustomers\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnAddCust != null : "fx:id=\"btnAddCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnCancel != null : "fx:id=\"btnCancel\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnEditCust != null : "fx:id=\"btnEditCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnSaveCust != null : "fx:id=\"btnSaveCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnDone != null : "fx:id=\"btnDone\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCusId != null : "fx:id=\"tfCusId\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustFname != null : "fx:id=\"tfCustFname\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustLname != null : "fx:id=\"tfCustLname\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustAddress != null : "fx:id=\"tfCustAddress\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustCity != null : "fx:id=\"tfCustCity\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustProv != null : "fx:id=\"tfCustProv\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustPostal != null : "fx:id=\"tfCustPostal\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustCountry != null : "fx:id=\"tfCustCountry\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustHomePhone != null : "fx:id=\"tfCustHomePhone\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustBusPhone != null : "fx:id=\"tfCustBusPhone\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustEmail != null : "fx:id=\"tfCustEmail\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert cbAgentId != null : "fx:id=\"cbAgentId\" was not injected: check your FXML file 'custdisplay.fxml'.";
 
         //Buttons Visibility
         btnSaveSupplier.setVisible(false);
@@ -1059,6 +1137,224 @@ public class Controller {
                 }
             }
         });
+
+
+        //Code for Customer //By Suvanjan Shrestha
+        //set visibility and disable text field
+        disableTextfield();
+        btnDone.setVisible(false);
+        btnSaveCust.setVisible(false);
+        btnEditCust.setVisible(false);
+        btnCancel.setVisible(false);
+
+        //Creating connection and list of customers     //By Suvanjan Shrestha
+        Connection cusConnection = connectDB();
+        ObservableList<Customer> list = FXCollections.observableArrayList();
+        try {
+            Statement statement = cusConnection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from customers order by CustFirstName");
+            while (rs.next()){
+                list.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12)));
+            }
+            cbCustomers.setItems(list);
+            cusConnection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        //Populate AgentsId combobox (Customer) //By Suvanjan Shrestha
+        Connection agentConn = connectDB();
+        ObservableList<Agent> agentsList = FXCollections.observableArrayList();
+        try {
+            Statement statement = agentConn.createStatement();
+            String sql = "SELECT * FROM `agents`";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next())
+            {
+                agentsList.add(new Agent(rs.getInt(1),rs.getString(2),rs.getString(3)));
+            }
+            cbAgentId.setItems(agentsList);
+            agentConn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        //Populate the form (Customer)  //By Suvanjan Shrestha
+        cbCustomers.getSelectionModel().selectedItemProperty().addListener((observableValue, customer, t1) -> {
+
+            if (cbCustomers.getSelectionModel().getSelectedIndex()>=0) {
+                tfCusId.setText(t1.getCustomerId() + "");
+                tfCustFname.setText(t1.getCustFirstName());
+                tfCustLname.setText(t1.getCustLastName());
+                tfCustAddress.setText(t1.getCustAddress());
+                tfCustCity.setText(t1.getCustCity());
+                tfCustProv.setText(t1.getCustProv());
+                tfCustPostal.setText(t1.getCustPostal());
+                tfCustCountry.setText(t1.getCustCountry());
+                tfCustHomePhone.setText(t1.getCustHomePhone());
+                tfCustBusPhone.setText(t1.getCustBusPhone());
+                tfCustEmail.setText(t1.getCustEmail());
+
+                agentIndex = 0;
+                for (Agent agent : agentsList){
+                    if (agent.getAgentId() == t1.getAgentId()) break;
+                    agentIndex++;
+                }
+                cbAgentId.getSelectionModel().select(agentIndex);
+
+                btnEditCust.setVisible(true);
+            } else {
+                clearTexts();
+            }
+        });
+
+        //Edit button function (Customer)   //By Suvanjan Shrestha
+        btnEditCust.setOnMouseClicked(mouseEvent -> {
+            enableTextfield();
+            btnSaveCust.setVisible(true);
+            btnEditCust.setDisable(true);
+            btnAddCust.setDisable(false);
+        });
+
+        //Add button function (Customer)    //By Suvanjan Shrestha
+        btnAddCust.setOnMouseClicked(mouseEvent -> {
+            btnDone.setVisible(true);
+            btnSaveCust.setVisible(false);
+            btnEditCust.setVisible(false);
+            btnCancel.setVisible(true);
+            cbCustomers.setDisable(true);
+            enableTextfield();
+            clearTexts();
+            tfCustFname.requestFocus();
+        });
+
+
+        // Done button function for saving new customer     //By Suvanjan Shrestha
+        btnDone.setOnMouseClicked(mouseEvent -> {
+            Connection insertConn = connectDB();
+            String sql = "INSERT INTO `customers`(`CustFirstName`, `CustLastName`, `CustAddress`, `CustCity`, `CustProv`, `CustPostal`, `CustCountry`, `CustHomePhone`, `CustBusPhone`, `CustEmail`, `AgentId`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+
+            try {
+                PreparedStatement statement = insertConn.prepareStatement(sql);
+
+                statement.setString(1, tfCustFname.getText());
+                statement.setString(2, tfCustLname.getText());
+                statement.setString(3, tfCustAddress.getText());
+                statement.setString(4, tfCustCity.getText());
+                statement.setString(5, tfCustProv.getText());
+                statement.setString(6, tfCustPostal.getText());
+                statement.setString(7, tfCustCountry.getText());
+                statement.setString(8, tfCustHomePhone.getText());
+                statement.setString(9, tfCustBusPhone.getText());
+                statement.setString(10, tfCustEmail.getText());
+                statement.setInt(11, cbAgentId.getSelectionModel().getSelectedItem().getAgentId());
+
+                if (tfCustFname.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Firstname!");
+                else if (tfCustLname.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Lastname!");
+                else if (tfCustAddress.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Address!");
+                else if (tfCustCity.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's City!");
+                else if (tfCustProv.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Province!");
+                else if (tfCustPostal.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Postal code!");
+                else if (tfCustBusPhone.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Business Phone number!");
+                else if (tfCustEmail.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Email");
+                else {
+                    boolean insertData = statement.execute();
+
+                    if (insertData) {
+                        //if update fails
+                        System.out.println("Operation failed!");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error!!");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Ooops, there was an error adding the customer!");
+                        alert.showAndWait();
+                    } else {
+                        //if update success
+                        System.out.println("Customer successfully added!");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Customer Added");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Operation Successful!");
+                        alert.showAndWait();
+
+                        disableTextfield();
+                        btnDone.setVisible(false);
+                        btnSaveCust.setVisible(false);
+                        btnEditCust.setVisible(true);
+                        btnCancel.setVisible(false);
+                        cbCustomers.setDisable(false);
+                    }
+                }
+                insertConn.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+
+        //Save button function (Customer)   //By Suvanjan Shrestha
+        btnSaveCust.setOnMouseClicked(mouseEvent -> {
+            Connection updateConn = connectDB();
+            String sql = "UPDATE `customers` SET `CustFirstName`=?,`CustLastName`=?,`CustAddress`=?,`CustCity`=?,`CustProv`=?,`CustPostal`=?,`CustCountry`=?,`CustHomePhone`=?,`CustBusPhone`=?,`CustEmail`=?,`AgentId`=? WHERE CustomerId=?";
+
+            try {
+                PreparedStatement statement = updateConn.prepareStatement(sql);
+
+                statement.setString(1, tfCustFname.getText());
+                statement.setString(2, tfCustLname.getText());
+                statement.setString(3, tfCustAddress.getText());
+                statement.setString(4, tfCustCity.getText());
+                statement.setString(5, tfCustProv.getText());
+                statement.setString(6, tfCustPostal.getText());
+                statement.setString(7, tfCustCountry.getText());
+                statement.setString(8, tfCustHomePhone.getText());
+                statement.setString(9, tfCustBusPhone.getText());
+                statement.setString(10, tfCustEmail.getText());
+                statement.setInt(11, cbAgentId.getSelectionModel().getSelectedItem().getAgentId());
+                statement.setInt(12, Integer.parseInt(tfCusId.getText()));
+
+                int numRows = statement.executeUpdate();
+                if (numRows == 0) {
+                    //if update fails
+                    System.out.println("Update failed!");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error!!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Ooops, there was an error while updating!");
+                    alert.showAndWait();
+                } else {
+                    //if update success
+                    System.out.println("Update successful!");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Updated");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Update Successful!");
+                    alert.showAndWait();
+
+                    btnEditCust.setDisable(false);
+                    disableTextfield();
+                    initialize();
+                }
+                updateConn.close();
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+
+        //Cancel button function    //By Suvanjan Shrestha
+        btnCancel.setOnMouseClicked(mouseEvent -> {
+            initialize();
+            cbCustomers.setDisable(false);
+        });
+
     }
 
     //Connection to the database
@@ -1089,5 +1385,53 @@ public class Controller {
         tfConEmail.setDisable(b);
         tfConCompany.setDisable(b);
         tfConURL.setDisable(b);
+    }
+
+
+    //Function to disable text fields in Customer form  //By Suvanjan Shrestha
+    private void disableTextfield(){
+        tfCusId.setDisable(true);
+        tfCustFname.setDisable(true);
+        tfCustLname.setDisable(true);
+        tfCustAddress.setDisable(true);
+        tfCustCity.setDisable(true);
+        tfCustProv.setDisable(true);
+        tfCustPostal.setDisable(true);
+        tfCustCountry.setDisable(true);
+        tfCustHomePhone.setDisable(true);
+        tfCustBusPhone.setDisable(true);
+        tfCustEmail.setDisable(true);
+        cbAgentId.setDisable(true);
+    }
+
+    //Function to enable text fields in Customer form   //By Suvanjan Shrestha
+    private void enableTextfield(){
+        tfCustFname.setDisable(false);
+        tfCustLname.setDisable(false);
+        tfCustAddress.setDisable(false);
+        tfCustCity.setDisable(false);
+        tfCustProv.setDisable(false);
+        tfCustPostal.setDisable(false);
+        tfCustCountry.setDisable(false);
+        tfCustHomePhone.setDisable(false);
+        tfCustBusPhone.setDisable(false);
+        tfCustEmail.setDisable(false);
+        cbAgentId.setDisable(false);
+    }
+
+    //Function to default text fields and combobox in Customer form //By Suvanjan Shrestha
+    private void clearTexts(){
+        tfCusId.clear();
+        tfCustFname.clear();
+        tfCustLname.clear();
+        tfCustAddress.clear();
+        tfCustCity.clear();
+        tfCustProv.clear();
+        tfCustPostal.clear();
+        tfCustCountry.clear();
+        tfCustHomePhone.clear();
+        tfCustBusPhone.clear();
+        tfCustEmail.clear();
+        cbAgentId.getSelectionModel().select(0);
     }
 }

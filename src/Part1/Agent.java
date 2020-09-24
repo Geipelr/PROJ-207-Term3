@@ -121,6 +121,9 @@ public class Agent {
 
     @Override
     public String toString() {
-        return  agentId+" - "+ agtFirstName+" "+agtLastName;
+        if (agtLastName == null)
+            return  agentId+" - "+ agtFirstName;
+        else
+            return agentId+" - "+ agtFirstName+" "+ agtLastName;
     }
 }

@@ -5,21 +5,28 @@
 
 package Part1;
 
-public class Customer {
-    private int CustomerId;
-    private String CustFirstName;
-    private String CustLastName;
-    private String CustAddress;
-    private String CustCity;
-    private String CustProv;
-    private String CustPostal;
-    private String Country;
-    private String CustHomePhone;
-    private String CustBusPhone;
-    private String CustEmail;
-    private int AgentID;
+//Author: Suvanjan Shrestha
+//Date: 20/09/2020
+//Threaded Project
+//Workshop 6
 
-    public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity, String custProv, String custPostal, String country, String custHomePhone, String custBusPhone, String custEmail, int agentID) {
+public class Customer {
+    //Variable Declaration
+    private  int CustomerId;
+    private  String CustFirstName;
+    private  String CustLastName;
+    private  String CustAddress;
+    private  String CustCity;
+    private  String CustProv;
+    private  String CustPostal;
+    private  String CustCountry;
+    private  String CustHomePhone;
+    private  String CustBusPhone;
+    private  String CustEmail;
+    private  int AgentId;
+
+    //Constructor
+    public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity, String custProv, String custPostal, String custCountry, String custHomePhone, String custBusPhone, String custEmail, int agentId) {
         CustomerId = customerId;
         CustFirstName = custFirstName;
         CustLastName = custLastName;
@@ -27,16 +34,14 @@ public class Customer {
         CustCity = custCity;
         CustProv = custProv;
         CustPostal = custPostal;
-        Country = country;
+        CustCountry = custCountry;
         CustHomePhone = custHomePhone;
         CustBusPhone = custBusPhone;
         CustEmail = custEmail;
-        AgentID = agentID;
+        AgentId = agentId;
     }
 
-    public Customer() {
-    }
-
+    //getters and setters
     public int getCustomerId() {
         return CustomerId;
     }
@@ -93,12 +98,12 @@ public class Customer {
         CustPostal = custPostal;
     }
 
-    public String getCountry() {
-        return Country;
+    public String getCustCountry() {
+        return CustCountry;
     }
 
-    public void setCountry(String country) {
-        Country = country;
+    public void setCustCountry(String custCountry) {
+        CustCountry = custCountry;
     }
 
     public String getCustHomePhone() {
@@ -125,17 +130,20 @@ public class Customer {
         CustEmail = custEmail;
     }
 
-    public int getAgentID() {
-        return AgentID;
+
+    public int getAgentId() {
+        return AgentId;
     }
 
-    public void setAgentID(int agentID) {
-        AgentID = agentID;
+    public void setAgentId(int agentId) {
+        AgentId = agentId;
     }
 
+    //toString function for combobox data
     @Override
     public String toString() {
-        return  CustFirstName + CustLastName;
+        return CustFirstName + " " + CustLastName;
     }
 }
+
 
