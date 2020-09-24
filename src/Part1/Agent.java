@@ -8,6 +8,7 @@ package Part1;
 //Date 9/20/2020
 //Thread Project
 //Workshop 6
+
 public class Agent {
     private int agentId;
     private int agencyId;
@@ -21,6 +22,7 @@ public class Agent {
     //Constructor 0 arguments
     public Agent() {
     }
+
     //Constructor 1 argument
     public Agent(int agentId) {
         this.agentId = agentId;
@@ -36,6 +38,7 @@ public class Agent {
         this.agtEmail = agtEmail;
         this.agtPosition = agtPosition;
     }
+
     //Constructor 7 arguments - no Agency
     public Agent(int agentId, String agtFistName, String agtMiddleInitial, String agtLastName, String agtBusPhone, String agtEmail, String agtPosition) {
         this.agentId = agentId;

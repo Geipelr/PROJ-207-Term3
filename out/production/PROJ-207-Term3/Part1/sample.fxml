@@ -40,7 +40,12 @@
       </Tab>
       <Tab fx:id="tabAgent" text="Agent">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane layoutX="200.0" layoutY="79.0" prefHeight="200.0" prefWidth="200.0">
+                     <!--Paste here -->
+                  </BorderPane>
+               </children></AnchorPane>
         </content>
       </Tab>
       <Tab fx:id="tabSupplier" text="Supplier">

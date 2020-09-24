@@ -401,6 +401,10 @@ public class Controller {
         assert cbAgentId != null : "fx:id=\"cbAgentId\" was not injected: check your FXML file 'custdisplay.fxml'.";
 
         // ---------------------------------------------------------------------------------------------------
+
+
+
+        //----------------------
         //Buttons Visibility
         btnSaveSupplier.setVisible(false);
         btnEditSupplier.setVisible(false);
@@ -1449,4 +1453,5 @@ public class Controller {
         tfCustEmail.clear();
         cbAgentId.getSelectionModel().select(0);
     }
+
 }
