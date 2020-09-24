@@ -47,6 +47,13 @@ public class Agent {
         this.agtPosition = agtPosition;
     }
 
+    //3 argument Constructor
+    public Agent(int agentId, String agtFirstName, String agtLastName) {
+        this.agentId = agentId;
+        this.agtFirstName = agtFirstName;
+        this.agtLastName = agtLastName;
+    }
+
     //Getter and Setter
     public int getAgentId() {
         return agentId;
