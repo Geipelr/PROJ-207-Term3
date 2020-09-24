@@ -7,7 +7,7 @@ package Part1;
 
 public class Customer {
     private int CustomerId;
-    private String CustFisrtName;
+    private String CustFirstName;
     private String CustLastName;
     private String CustAddress;
     private String CustCity;
@@ -19,9 +19,9 @@ public class Customer {
     private String CustEmail;
     private int AgentID;
 
-    public Customer(int customerId, String custFisrtName, String custLastName, String custAddress, String custCity, String custProv, String custPostal, String country, String custHomePhone, String custBusPhone, String custEmail, int agentID) {
+    public Customer(int customerId, String custFirstName, String custLastName, String custAddress, String custCity, String custProv, String custPostal, String country, String custHomePhone, String custBusPhone, String custEmail, int agentID) {
         CustomerId = customerId;
-        CustFisrtName = custFisrtName;
+        CustFirstName = custFirstName;
         CustLastName = custLastName;
         CustAddress = custAddress;
         CustCity = custCity;
@@ -45,12 +45,12 @@ public class Customer {
         CustomerId = customerId;
     }
 
-    public String getCustFisrtName() {
-        return CustFisrtName;
+    public String getCustFirstName() {
+        return CustFirstName;
     }
 
-    public void setCustFisrtName(String custFisrtName) {
-        CustFisrtName = custFisrtName;
+    public void setCustFirstName(String custFirstName) {
+        CustFirstName = custFirstName;
     }
 
     public String getCustLastName() {
@@ -135,7 +135,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return  CustFisrtName + CustLastName;
+        return  CustFirstName + CustLastName;
     }
 }
 

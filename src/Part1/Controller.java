@@ -822,6 +822,7 @@ public class Controller {
                 disableContactTextFields(false);
             }
         });
+
         //Agency
         // combo box list
         ArrayList<Integer> agencyList = new ArrayList<>(10);
@@ -1059,6 +1060,7 @@ public class Controller {
             }
         });
     }
+
     //Connection to the database
     private Connection connectDB() {
         Connection c=null;
