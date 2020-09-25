@@ -5,6 +5,8 @@
 
 package Part1;
 
+import com.sun.javafx.tk.AppletWindow;
+import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -1153,6 +1155,7 @@ public class Controller {
         btnDone.setVisible(false);
         btnSaveCust.setVisible(false);
         btnEditCust.setVisible(false);
+        btnEditCust.setDisable(false);
         btnCancel.setVisible(false);
 
         //Creating connection and list of customers     //By Suvanjan Shrestha
@@ -1365,8 +1368,10 @@ public class Controller {
 
         //Cancel button function    //By Suvanjan Shrestha
         btnCancel.setOnMouseClicked(mouseEvent -> {
-            initialize();
+            //initialize();
             cbCustomers.setDisable(false);
+            this.initialize();
+
         });
 
     }
