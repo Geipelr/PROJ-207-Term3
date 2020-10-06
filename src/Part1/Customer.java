@@ -41,6 +41,11 @@ public class Customer {
         AgentId = agentId;
     }
 
+    public Customer(String custFirstName, String custLastName) {
+        CustFirstName = custFirstName;
+        CustLastName = custLastName;
+    }
+
     //getters and setters
     public int getCustomerId() {
         return CustomerId;

@@ -1717,59 +1717,56 @@ public class Controller {
             Connection updateConn = connectDB();
             String sql = "UPDATE `customers` SET `CustFirstName`=?,`CustLastName`=?,`CustAddress`=?,`CustCity`=?,`CustProv`=?,`CustPostal`=?,`CustCountry`=?,`CustHomePhone`=?,`CustBusPhone`=?,`CustEmail`=?,`AgentId`=? WHERE CustomerId=?";
 
-            try {
-                PreparedStatement statement = updateConn.prepareStatement(sql);
+                try {
+                    PreparedStatement statement = updateConn.prepareStatement(sql);
 
-                statement.setString(1, tfCustFname.getText());
-                statement.setString(2, tfCustLname.getText());
-                statement.setString(3, tfCustAddress.getText());
-                statement.setString(4, tfCustCity.getText());
-                statement.setString(5, tfCustProv.getText());
-                statement.setString(6, tfCustPostal.getText());
-                statement.setString(7, tfCustCountry.getText());
-                statement.setString(8, tfCustHomePhone.getText());
-                statement.setString(9, tfCustBusPhone.getText());
-                statement.setString(10, tfCustEmail.getText());
-                statement.setInt(11, cbAgentId.getSelectionModel().getSelectedItem().getAgentId());
-                statement.setInt(12, Integer.parseInt(tfCusId.getText()));
+                    statement.setString(1, tfCustFname.getText());
+                    statement.setString(2, tfCustLname.getText());
+                    statement.setString(3, tfCustAddress.getText());
+                    statement.setString(4, tfCustCity.getText());
+                    statement.setString(5, tfCustProv.getText());
+                    statement.setString(6, tfCustPostal.getText());
+                    statement.setString(7, tfCustCountry.getText());
+                    statement.setString(8, tfCustHomePhone.getText());
+                    statement.setString(9, tfCustBusPhone.getText());
+                    statement.setString(10, tfCustEmail.getText());
+                    statement.setInt(11, cbAgentId.getSelectionModel().getSelectedItem().getAgentId());
+                    statement.setInt(12, Integer.parseInt(tfCusId.getText()));
 
-                int numRows = statement.executeUpdate();
-                if (numRows == 0) {
-                    //if update fails
-                    System.out.println("Update failed!");
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error!!");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Ooops, there was an error while updating!");
-                    alert.showAndWait();
-                } else {
-                    //if update success
-                    System.out.println("Update successful!");
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Updated");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Update Successful!");
-                    alert.showAndWait();
+                    int numRows = statement.executeUpdate();
+                    if (numRows == 0) {
+                        //if update fails
+                        System.out.println("Update failed!");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error!!");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Ooops, there was an error while updating!");
+                        alert.showAndWait();
+                    } else {
+                        //if update success
+                        System.out.println("Update successful!");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Updated");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Update Successful!");
+                        alert.showAndWait();
 
-                    btnEditCust.setDisable(false);
-                    disableTextfield();
-                    initialize();
+                        btnEditCust.setDisable(false);
+                        disableTextfield();
+                        initialize();
+                    }
+                    updateConn.close();
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
-                updateConn.close();
-
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
         });
 
         //Cancel button function    //By Suvanjan Shrestha
         btnCancel.setOnMouseClicked(mouseEvent -> {
-            //initialize();
+            initialize();
             cbCustomers.setDisable(false);
-            this.initialize();
-
         });
-
     }
     //----- end of initialize ----------------------------------------------------
     // methods for Agents - by Lisa Saffel
