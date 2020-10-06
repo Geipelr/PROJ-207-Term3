@@ -1781,7 +1781,6 @@ public class Controller {
         tfAgencyId.clear();
     }
 
-    // ---- end of methods for Agents - by Lisa Saffel ---------------------------------------------------------------
     // ------------------------------------------------------------------------------------------
     // Agents - by Lisa Saffel
     // method to enable or disable text fields in the Agent window
@@ -1811,6 +1810,7 @@ public class Controller {
         clearAgentTextFields();                          // clear the text fields - make them blank
         disableAgentTextFields(true);        // A new agent has been selected in the combo box
     }
+    // ---- end of methods for Agents - by Lisa Saffel ---------------------------------------------------------------
 
     // ---------------------------------------------------------------------------
 
