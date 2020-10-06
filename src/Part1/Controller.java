@@ -142,7 +142,7 @@ public class Controller {
 
     // -------------------------------------------------------------------------------
 
-    //Supplier Variables
+    //Supplier Variables - Gustavo Lourenco Moises
     int indexSupp;
     int indexAffi;
     boolean newSupplier;
@@ -187,9 +187,7 @@ public class Controller {
     @FXML
     private Button btnAdd;
 
-
-
-    //Supplier Buttons and TextFields
+    //Supplier Buttons and TextFields - Gustavo Lourenco Moises --------------------------------------------------------
     @FXML
     private Button btnAddSupplier;
 
@@ -398,7 +396,7 @@ public class Controller {
 
     @FXML
     void initialize() {
-        //Supplier
+        //Supplier - Gustavo Lourenco Moises
         assert tabAgency != null : "fx:id=\"tabAgency\" was not injected: check your FXML file 'sample.fxml'.";
         assert tabAgent != null : "fx:id=\"tabAgent\" was not injected: check your FXML file 'sample.fxml'.";
         assert tabSupplier != null : "fx:id=\"tabSupplier\" was not injected: check your FXML file 'sample.fxml'.";
@@ -800,9 +798,8 @@ public class Controller {
             }
         });
 
-
-
-        //----------------------
+        //--------------------------------------------------------------------------------------------------------------------------
+        //Suppliers - - Gustavo Lourenco Moises
         //Buttons Visibility
         btnSaveSupplier.setVisible(false);
         btnEditSupplier.setVisible(false);
@@ -1305,8 +1302,8 @@ public class Controller {
                 disableContactTextFields(false);
             }
         });
-
-        //Agency
+//__________________________________________________________________________________________________________________________________
+        //Agency - Robert
         // combo box list
         ArrayList<Integer> agencyList = new ArrayList<>(10);
 
@@ -1817,7 +1814,7 @@ public class Controller {
 
     // ---------------------------------------------------------------------------
 
-    //Connection to the database
+    //Connection to the database - Gustavo Lourenco Moises
     private Connection connectDB() {
         Connection c=null;
         try {
@@ -1830,7 +1827,7 @@ public class Controller {
     }
     //---------------------------------------------------------
 
-    //method to disable text fields from Contact
+    //method to disable text fields from Contact - Gustavo Lourenco Moises
     private void disableContactTextFields(boolean b)
     {
         cmbConSupplier.setDisable(b);
