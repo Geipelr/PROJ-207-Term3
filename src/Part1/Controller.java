@@ -5,6 +5,8 @@
 
 package Part1;
 
+import com.sun.javafx.tk.AppletWindow;
+import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -15,10 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 
@@ -30,13 +29,125 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-
+//-----------------------------------------------------------------------------------------
 public class Controller {
+
+    //Variable and Objects for Customer //By Suvanjan Shrestha
+    int agentIndex;
+
+    @FXML
+    private ComboBox<Customer> cbCustomers;
+
+    @FXML
+    private Button btnAddCust;
+
+    @FXML
+    private Button btnEditCust;
+
+    @FXML
+    private Button btnSaveCust;
+
+    @FXML
+    private Button btnDone;
+
+    @FXML
+    private Button btnCancel;
+
+    @FXML
+    private TextField tfCusId;
+
+    @FXML
+    private TextField tfCustFname;
+
+    @FXML
+    private TextField tfCustLname;
+
+    @FXML
+    private TextField tfCustAddress;
+
+    @FXML
+    private TextField tfCustCity;
+
+    @FXML
+    private TextField tfCustProv;
+
+    @FXML
+    private TextField tfCustPostal;
+
+    @FXML
+    private TextField tfCustCountry;
+
+    @FXML
+    private TextField tfCustHomePhone;
+
+    @FXML
+    private TextField tfCustBusPhone;
+
+    @FXML
+    private TextField tfCustEmail;
+
+    @FXML
+    private ComboBox<Agent> cbAgentId;
+
+    // -------------------------------------------------------------------------------
+
+    // for Agent - by Lisa Saffel
+    @FXML
+    private Button btnEditAgent;
+
+    @FXML
+    private Button btnSaveAgentUpdates;
+
+    @FXML
+    private Button btnAddNewAgent;
+
+    @FXML
+    private Button btnSaveNewAgent;
+
+    @FXML
+    private Button btnAgentCancel;
+
+    @FXML
+    private TextField tfAgentId;
+
+    @FXML
+    private TextField tfAgtFirstName;
+
+    @FXML
+    private TextField tfAgtMiddleInitial;
+
+    @FXML
+    private TextField tfAgtLastName;
+
+    @FXML
+    private TextField tfAgtBusPhone;
+
+    @FXML
+    private TextField tfAgtEmail;
+
+    @FXML
+    private TextField tfAgtPosition;
+
+    @FXML
+    private TextField tfAgencyId;
+
+    @FXML
+    private ComboBox<Agent> cbAgents;       // ? changed to Agent, i.e. a combo box of Agent objects
+
+    // ------------------------------------------------------------------------------------------
+
+    // Agent variables - Lisa Saffel
+    boolean newAgt;
+
+
+    // -------------------------------------------------------------------------------
+
     //Supplier Variables
     int indexSupp;
     int indexAffi;
     boolean newSupplier;
     boolean newContact;
+
 
     //Agency Variables
     // agency list in combo box
@@ -153,6 +264,7 @@ public class Controller {
 
     @FXML
     private Button btnSaveContact;
+//-------------------------------------------------------------------------------------------------------
 
     private EventHandler eventHandler = new EventHandler<ActionEvent>() {
         @Override
@@ -281,6 +393,7 @@ public class Controller {
         }
     };
 
+//--------------------------------------------------------------------------------------------------------------
 
 
     @FXML
@@ -320,6 +433,376 @@ public class Controller {
         assert cmbAgencyId != null : "fx:id=\"cmbAgencyId\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnAdd != null : "fx:id=\"btnAdd\" was not injected: check your FXML file 'mainAgency.fxml'.";
 
+        //Customer  //By Suvanjan Shrestha
+        assert cbCustomers != null : "fx:id=\"cbCustomers\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnAddCust != null : "fx:id=\"btnAddCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnCancel != null : "fx:id=\"btnCancel\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnEditCust != null : "fx:id=\"btnEditCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnSaveCust != null : "fx:id=\"btnSaveCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnDone != null : "fx:id=\"btnDone\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCusId != null : "fx:id=\"tfCusId\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustFname != null : "fx:id=\"tfCustFname\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustLname != null : "fx:id=\"tfCustLname\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustAddress != null : "fx:id=\"tfCustAddress\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustCity != null : "fx:id=\"tfCustCity\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustProv != null : "fx:id=\"tfCustProv\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustPostal != null : "fx:id=\"tfCustPostal\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustCountry != null : "fx:id=\"tfCustCountry\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustHomePhone != null : "fx:id=\"tfCustHomePhone\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustBusPhone != null : "fx:id=\"tfCustBusPhone\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert tfCustEmail != null : "fx:id=\"tfCustEmail\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert cbAgentId != null : "fx:id=\"cbAgentId\" was not injected: check your FXML file 'custdisplay.fxml'.";
+
+        // Agent - Lisa Saffel
+        assert btnEditAgent != null : "fx:id=\"btnEditAgent\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert btnSaveAgentUpdates != null : "fx:id=\"btnSaveAgentUpdates\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert tfAgentId != null : "fx:id=\"tfAgentId\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert tfAgtFirstName != null : "fx:id=\"tfAgtFirstName\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert tfAgtMiddleInitial != null : "fx:id=\"tfAgtMiddleInitial\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert tfAgtLastName != null : "fx:id=\"tfAgtLastName\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert tfAgtBusPhone != null : "fx:id=\"tfAgtBusPhone\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert tfAgtEmail != null : "fx:id=\"tfAgtEmail\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert tfAgtPosition != null : "fx:id=\"tfAgtPosition\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert tfAgencyId != null : "fx:id=\"tfAgencyId\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert cbAgents != null : "fx:id=\"cbAgents\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert btnAddNewAgent != null : "fx:id=\"btnAddNewAgent\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert btnAgentCancel != null : "fx:id=\"btnAgentCancel\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+        assert btnAddNewAgent != null : "fx:id=\"btnAddNewAgent\" was not injected: check your FXML file 'agentdisplay.fxml'.";
+
+
+        // ---------------------------------------------------------------------------------------------------
+
+        // Agents - by Lisa Saffel
+        // make all of the text fields initially not editable, so nothing can be typed into them
+        disableAgentTextFields(true);
+
+        tfAgentId.setDisable(true);                 // initialize the Agent ID to be disabled and it will stay that way
+        // so that the Agent ID can never be edited
+
+        initialState();             // set the buttons and text fields to their initial state of enabled or disabled
+
+        // ------------------------------------------------------------------------------------------
+
+        // Agents - by Lisa Saffel
+        // method that will get a connection and bring it back so that we don't have to have
+        // multiple copies of the connection string information
+        Connection conn5 = connectDB();     // open a connection to the database
+        ObservableList<Agent> agentObservableList = FXCollections.observableArrayList();            // I refactored this - previously named "list" ***
+        try {
+            Statement stmt = conn5.createStatement();
+
+            // submit SQL to bring back all the agents so we can build the data for the combo
+            String sql = "select * from agents";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next())       // while rs.next points at the next row and returns true,
+            // we're going to process the row.
+            // Once it hits the end, it returns false and we
+            // drop out of the while loop
+            {
+                agentObservableList.add(new Agent(rs.getInt(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getInt(8)));
+            }
+            cbAgents.setItems(agentObservableList);
+            conn5.close();      // Finished with the connection to the database, so close it
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        // attach an event listener to the combo box so that when we select something
+        // in the combo box, we want it to update the text fields that are inside the GUI
+        cbAgents.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Agent>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Agent> observableValue, Agent agent, Agent t1) {
+                // take the new agent, t1, and pull its values out and put them into the fields
+                // so we can display the agent inside the text fields. Add "" to Id fields
+                // to make into strings
+                tfAgentId.setText(t1.getAgentId() + "");
+                tfAgtFirstName.setText(t1.getAgtFirstName());
+                tfAgtMiddleInitial.setText(t1.getAgtMiddleInitial());
+                tfAgtLastName.setText(t1.getAgtLastName());
+                tfAgtBusPhone.setText(t1.getAgtBusPhone());
+                tfAgtEmail.setText(t1.getAgtEmail());
+                tfAgtPosition.setText(t1.getAgtPosition());
+                tfAgencyId.setText(t1.getAgencyId() + "");
+
+                tfAgentId.setDisable(true);             // make the AgentId visible, but it cannot be edited
+                disableAgentTextFields(true);        // A new agent has been selected in the combo box,
+                // so disable the text fields until the Edit button is pressed
+                btnEditAgent.setDisable(false);         // the combo box item is now being displayed, so enable the Edit button.
+                btnSaveAgentUpdates.setDisable(true);         // An item is being displayed, so disable the save button
+                btnAddNewAgent.setDisable(true);            // disable the "Add New Agent" button
+                btnSaveNewAgent.setDisable(true);           // disable the "Save New Agent" button
+                btnAgentCancel.setDisable(false);            // disable the Cancel button
+                cbAgents.setDisable(false);                 // enable the combo box
+
+            }
+        });
+
+        // ------------------------------------------------------------------------------------------
+
+        // Agents - by Lisa Saffel
+        // the Edit button has been clicked. Enable the text fields. Disable the edit button.
+        // Enable the save button
+        btnEditAgent.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Connection conn5 = connectDB();     // sign on and give a connection to the database
+
+                // the edit button has been clicked
+
+                btnEditAgent.setDisable(true);              // initialize the Edit button to disabled
+                btnSaveAgentUpdates.setVisible(true);       // make the Save button visible
+                btnSaveAgentUpdates.setDisable(false);      // initialize the Save button to disabled
+                btnAddNewAgent.setDisable(true);           // enable the "Add New Agent" button
+                btnSaveNewAgent.setDisable(true);           // disable the "Save New Agent" button
+                btnAgentCancel.setDisable(false);            // disable the Cancel button
+                cbAgents.setDisable(false);                 // enable the combo box
+
+
+                // set all of the text fields (except for AgentId) so that they can be edited
+                disableAgentTextFields(false);
+
+            }
+        });
+
+        // ------------------------------------------------------------------------------------------
+        // Agents - by Lisa Saffel
+        // Once the user makes a change, they can click the Save Updates button.
+        // Attach a listener to the Save Updates button to listen for clicks to it.
+        btnSaveAgentUpdates.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            // the Save Updates button has been clicked in the Agents window
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Connection conn5 = connectDB();     // sign on and give a connection to the database
+                String sql5 = "UPDATE `agents` SET `AgtFirstName`=?,`AgtMiddleInitial`=?,`AgtLastName`=?,`AgtBusPhone`=?,`AgtEmail`=?,`AgtPosition`=?,`AgencyId`=? WHERE AgentId=?";
+                try {
+                    PreparedStatement stmt = conn5.prepareStatement(sql5);
+                    // update to the database
+                    // substitute each value for each question mark in the SQL statement above
+                    stmt.setString(1, tfAgtFirstName.getText());
+                    stmt.setString(2, tfAgtMiddleInitial.getText());
+                    stmt.setString(3, tfAgtLastName.getText());
+                    stmt.setString(4, tfAgtBusPhone.getText());
+                    stmt.setString(5, tfAgtEmail.getText());
+                    stmt.setString(6, tfAgtPosition.getText());
+                    stmt.setInt(7, Integer.parseInt(tfAgencyId.getText()));
+                    stmt.setInt(8, Integer.parseInt(tfAgentId.getText()));
+                    int numOfRows = stmt.executeUpdate();
+                    if (numOfRows == 0)     // failure
+                    {
+                        System.out.println("failed");
+                    }
+                    else
+                    {
+                        System.out.println("updated");
+                        //Update the list that's associated with the combo box
+                        for (Agent agt : agentObservableList)
+                        {
+                            if (agt.getAgentId()==Integer.parseInt(tfAgentId.getText()))
+                            {
+                                agt.setAgtFirstName(tfAgtFirstName.getText());
+                                agt.setAgtMiddleInitial(tfAgtMiddleInitial.getText());
+                                agt.setAgtLastName(tfAgtLastName.getText());
+                                agt.setAgtBusPhone(tfAgtBusPhone.getText());
+                                agt.setAgtEmail(tfAgtEmail.getText());
+                                agt.setAgtPosition(tfAgtPosition.getText());
+                                agt.setAgencyId(Integer.parseInt(tfAgencyId.getText()));        // ??? ***
+                            }
+
+                        }
+
+                    }
+                    conn5.close();      // release the connection to the database
+                    btnSaveAgentUpdates.setDisable(true);      // disable the save button
+                    btnEditAgent.setDisable(false);     // enable the edit button
+                    disableAgentTextFields(true);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+
+        // ------------------------------------------------------------------------------------
+
+        // Agents - by Lisa Saffel
+        // the "Add New Agent" button has been clicked, so clear text fields and display or disable buttons
+        btnAddNewAgent.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                newAgt = true;
+                btnEditAgent.setVisible(false);              // hide the Edit button
+                btnSaveAgentUpdates.setVisible(false);              // initialize the Save button to disabled
+                btnSaveNewAgent.setVisible(true);           // show the "Save New Agent" button
+                btnAddNewAgent.setDisable(true);           // enable the "Add New Agent" button
+                btnSaveNewAgent.setDisable(false);           // disable the "Save New Agent" button
+                btnAgentCancel.setDisable(false);            // disable the Cancel button
+                cbAgents.setDisable(true);                 // disable the combo box
+
+
+                clearAgentTextFields();          // clear the text fields (make them blank)
+
+                // set all of the text fields (except for AgentId) so that they can be edited
+                disableAgentTextFields(false);
+            }
+        });
+
+
+
+
+        // ------------------------------------------------------------------------------------
+        // Agents - by Lisa Saffel
+        // the "Save New Agent" button has been clicked, so save the new agent to
+        // the database,  set the buttons to their initial state and clear the text fields
+        btnSaveNewAgent.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+
+                Connection conn = connectDB();
+                String sql;
+                if (newAgt)
+                {
+
+                    sql = "INSERT INTO `agents`(`AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, " +
+                            "`AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`) VALUES (?,?,?,?,?,?,?)";
+                }
+
+                else
+                    sql = "UPDATE `agents` SET `AgtFirstName`=?,`AgtMiddleInitial`=?,`AgtLastName`=?," +
+                            "`AgtBusPhone`=?,`AgtEmail`=?,`AgtPosition`=?,`AgencyId`=? WHERE `AgentId`=?";
+
+                try {
+                    Agent newAgent = new Agent();
+                    PreparedStatement stmt = conn.prepareStatement(sql);
+                    stmt.setString(1,tfAgtFirstName.getText());
+                    newAgent.setAgtFirstName(tfAgtFirstName.getText());
+                    stmt.setString(2,tfAgtMiddleInitial.getText());
+                    newAgent.setAgtMiddleInitial(tfAgtMiddleInitial.getText());
+                    stmt.setString(3,tfAgtLastName.getText());
+                    newAgent.setAgtLastName(tfAgtLastName.getText());
+                    stmt.setString(4,tfAgtBusPhone.getText());
+                    newAgent.setAgtBusPhone(tfAgtBusPhone.getText());
+                    stmt.setString(5,tfAgtEmail.getText());
+                    newAgent.setAgtEmail(tfAgtEmail.getText());
+                    stmt.setString(6,tfAgtPosition.getText());
+                    newAgent.setAgtPosition(tfAgtPosition.getText());
+                    if (tfAgencyId.getText()==null)
+                    {
+                        stmt.setString(7, null);
+                    }
+                    else
+                    {
+                        try {
+                            stmt.setInt(7, Integer.parseInt(tfAgencyId.getText()));
+                        } catch (SQLException throwables) {
+                            stmt.setString(7, null);
+                        } catch (NumberFormatException e) {
+                            stmt.setString(7, null);
+                        }
+                    }
+                    try {
+                        newAgent.setAgencyId(Integer.parseInt(tfAgencyId.getText()));
+                    } catch (NumberFormatException e) {
+                        newAgent.setAgencyId(0);
+                    }
+
+
+                    if (!newAgt)
+                    {
+                        stmt.setInt(1,Integer.parseInt(tfAgentId.getText()));   // *** not sure if the correct ID field here, or 1 either ***
+                    }
+                    else
+                    {
+                        //Find next Agent Contact ID
+                        Connection conn6 = connectDB();
+                        try {
+                            Statement stmt1 = conn6.createStatement();
+
+                            String sql4= "SELECT `AgentId` FROM `agents` ORDER BY `AgentId`DESC LIMIT 1";
+                            ResultSet rsAgt = stmt1.executeQuery(sql4);
+                            while (rsAgt.next())
+                            {
+                                int test =rsAgt.getInt(1)+1;
+                                newAgent.setAgentId(rsAgt.getInt(1)+1);
+                                stmt.setInt(1,newAgent.getAgentId());
+                            }
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                        conn6.close();
+                    }
+
+                    int numRows =stmt.executeUpdate();
+                    if (numRows==0)
+                    {
+                        if (newAgt)
+                        {
+                            System.out.println("Agent insertion into the database failed");
+                            JOptionPane.showMessageDialog(new JFrame(),"Agent insertion into the database failed");
+                        }
+                        else
+                        {
+                            System.out.println("Agent Update Failed");
+                            JOptionPane.showMessageDialog(new JFrame(),"Agent Update failed");
+                        }
+                    }
+                    else
+                    {
+                        if (newAgt)
+                        {
+                            System.out.println("New Agent Inserted");
+                            JOptionPane.showMessageDialog(new JFrame(),"New agent successfully inserted");
+                            newAgt=false;
+                            agentObservableList.add(newAgent);                  // add the new agent to the list so it displays in the combo box
+                            tfAgentId.setText(newAgent.getAgentId()+"");
+                        }
+                        else
+                        {
+                            System.out.println("Updated");
+                            JOptionPane.showMessageDialog(new JFrame(),"Agent Successfully Updated.");
+                            //Update contact List
+                            for (Agent agt : agentObservableList)
+                            {
+                                if (agt.getAgentId()==Integer.parseInt(tfAgentId.getText()))
+                                {
+                                    agt.setAgtFirstName(tfAgtFirstName.getText());
+                                    agt.setAgtMiddleInitial(tfAgtMiddleInitial.getText());
+                                    agt.setAgtLastName(tfAgtLastName.getText());
+                                    agt.setAgtBusPhone(tfAgtBusPhone.getText());
+                                    agt.setAgtEmail(tfAgtEmail.getText());
+                                    agt.setAgtPosition(tfAgtPosition.getText());
+                                    agt.setAgencyId(Integer.parseInt(tfAgencyId.getText()));
+                                }
+
+                            }
+                        }
+                    }
+                    conn.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
+                initialState();             // set the buttons to their initial state and clear the text fields
+            }
+        });
+        // ------------------------------------------------------------------------------------
+        // Agents - by Lisa Saffel
+        // the Cancel button has been clicked, so clear the text fields and
+        // set the buttons to their initial state
+
+        btnAgentCancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                initialState();
+            }
+        });
+
+
+
+        //----------------------
         //Buttons Visibility
         btnSaveSupplier.setVisible(false);
         btnEditSupplier.setVisible(false);
@@ -822,6 +1305,7 @@ public class Controller {
                 disableContactTextFields(false);
             }
         });
+
         //Agency
         // combo box list
         ArrayList<Integer> agencyList = new ArrayList<>(10);
@@ -983,6 +1467,7 @@ public class Controller {
             }
         });
 
+        // ------------------------------------------------------
         btnAdd.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -1058,7 +1543,280 @@ public class Controller {
                 }
             }
         });
+
+        // --------------------------------------------------------------------------//
+        //Code for Customer //By Suvanjan Shrestha
+        //set visibility and disable text field
+        disableTextfield();
+        btnDone.setVisible(false);
+        btnSaveCust.setVisible(false);
+        btnEditCust.setVisible(false);
+        btnEditCust.setDisable(false);
+        btnCancel.setVisible(false);
+
+        //Creating connection and list of customers     //By Suvanjan Shrestha
+        Connection cusConnection = connectDB();
+        ObservableList<Customer> list = FXCollections.observableArrayList();
+        try {
+            Statement statement = cusConnection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from customers order by CustFirstName");
+            while (rs.next()){
+                list.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12)));
+            }
+            cbCustomers.setItems(list);
+            cusConnection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        //---------------------------------------------------------
+
+        //Populate AgentsId combobox (Customer) //By Suvanjan Shrestha
+        Connection agentConn = connectDB();
+        ObservableList<Agent> agentsList = FXCollections.observableArrayList();
+        try {
+            Statement statement = agentConn.createStatement();
+            String sql = "SELECT * FROM `agents`";
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next())
+            {
+                agentsList.add(new Agent(rs.getInt(1),rs.getString(2),rs.getString(3)));
+            }
+            cbAgentId.setItems(agentsList);
+            agentConn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        //---------------------------------------------------------
+
+        //Populate the form (Customer)  //By Suvanjan Shrestha
+        cbCustomers.getSelectionModel().selectedItemProperty().addListener((observableValue, customer, t1) -> {
+
+            if (cbCustomers.getSelectionModel().getSelectedIndex()>=0) {
+                tfCusId.setText(t1.getCustomerId() + "");
+                tfCustFname.setText(t1.getCustFirstName());
+                tfCustLname.setText(t1.getCustLastName());
+                tfCustAddress.setText(t1.getCustAddress());
+                tfCustCity.setText(t1.getCustCity());
+                tfCustProv.setText(t1.getCustProv());
+                tfCustPostal.setText(t1.getCustPostal());
+                tfCustCountry.setText(t1.getCustCountry());
+                tfCustHomePhone.setText(t1.getCustHomePhone());
+                tfCustBusPhone.setText(t1.getCustBusPhone());
+                tfCustEmail.setText(t1.getCustEmail());
+
+                agentIndex = 0;
+                for (Agent agent : agentsList){
+                    if (agent.getAgentId() == t1.getAgentId()) break;
+                    agentIndex++;
+                }
+                cbAgentId.getSelectionModel().select(agentIndex);
+
+                btnEditCust.setVisible(true);
+            } else {
+                clearTexts();
+            }
+        });
+        //---------------------------------------------------------
+
+        //Edit button function (Customer)   //By Suvanjan Shrestha
+        btnEditCust.setOnMouseClicked(mouseEvent -> {
+            enableTextfield();
+            btnSaveCust.setVisible(true);
+            btnEditCust.setDisable(true);
+            btnAddCust.setDisable(false);
+        });
+        //---------------------------------------------------------
+
+        //Add button function (Customer)    //By Suvanjan Shrestha
+        btnAddCust.setOnMouseClicked(mouseEvent -> {
+            btnDone.setVisible(true);
+            btnSaveCust.setVisible(false);
+            btnEditCust.setVisible(false);
+            btnCancel.setVisible(true);
+            cbCustomers.setDisable(true);
+            enableTextfield();
+            clearTexts();
+            tfCustFname.requestFocus();
+        });
+
+        //---------------------------------------------------------
+
+        // Done button function for saving new customer     //By Suvanjan Shrestha
+        btnDone.setOnMouseClicked(mouseEvent -> {
+            Connection insertConn = connectDB();
+            String sql = "INSERT INTO `customers`(`CustFirstName`, `CustLastName`, `CustAddress`, `CustCity`, `CustProv`, `CustPostal`, `CustCountry`, `CustHomePhone`, `CustBusPhone`, `CustEmail`, `AgentId`) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+
+            try {
+                PreparedStatement statement = insertConn.prepareStatement(sql);
+
+                statement.setString(1, tfCustFname.getText());
+                statement.setString(2, tfCustLname.getText());
+                statement.setString(3, tfCustAddress.getText());
+                statement.setString(4, tfCustCity.getText());
+                statement.setString(5, tfCustProv.getText());
+                statement.setString(6, tfCustPostal.getText());
+                statement.setString(7, tfCustCountry.getText());
+                statement.setString(8, tfCustHomePhone.getText());
+                statement.setString(9, tfCustBusPhone.getText());
+                statement.setString(10, tfCustEmail.getText());
+                statement.setInt(11, cbAgentId.getSelectionModel().getSelectedItem().getAgentId());
+
+                if (tfCustFname.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Firstname!");
+                else if (tfCustLname.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Lastname!");
+                else if (tfCustAddress.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Address!");
+                else if (tfCustCity.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's City!");
+                else if (tfCustProv.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Province!");
+                else if (tfCustPostal.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Postal code!");
+                else if (tfCustBusPhone.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Business Phone number!");
+                else if (tfCustEmail.getText().length() == 0)
+                    JOptionPane.showMessageDialog(null,"Please enter the customer's Email");
+                else {
+                    boolean insertData = statement.execute();
+
+                    if (insertData) {
+                        //if update fails
+                        System.out.println("Operation failed!");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error!!");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Ooops, there was an error adding the customer!");
+                        alert.showAndWait();
+                    } else {
+                        //if update success
+                        System.out.println("Customer successfully added!");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Customer Added");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Operation Successful!");
+                        alert.showAndWait();
+
+                        disableTextfield();
+                        btnDone.setVisible(false);
+                        btnSaveCust.setVisible(false);
+                        btnEditCust.setVisible(true);
+                        btnCancel.setVisible(false);
+                        cbCustomers.setDisable(false);
+                    }
+                }
+                insertConn.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
+        //---------------------------------------------------------
+
+        //Save button function (Customer)   //By Suvanjan Shrestha
+        btnSaveCust.setOnMouseClicked(mouseEvent -> {
+            Connection updateConn = connectDB();
+            String sql = "UPDATE `customers` SET `CustFirstName`=?,`CustLastName`=?,`CustAddress`=?,`CustCity`=?,`CustProv`=?,`CustPostal`=?,`CustCountry`=?,`CustHomePhone`=?,`CustBusPhone`=?,`CustEmail`=?,`AgentId`=? WHERE CustomerId=?";
+
+                try {
+                    PreparedStatement statement = updateConn.prepareStatement(sql);
+
+                    statement.setString(1, tfCustFname.getText());
+                    statement.setString(2, tfCustLname.getText());
+                    statement.setString(3, tfCustAddress.getText());
+                    statement.setString(4, tfCustCity.getText());
+                    statement.setString(5, tfCustProv.getText());
+                    statement.setString(6, tfCustPostal.getText());
+                    statement.setString(7, tfCustCountry.getText());
+                    statement.setString(8, tfCustHomePhone.getText());
+                    statement.setString(9, tfCustBusPhone.getText());
+                    statement.setString(10, tfCustEmail.getText());
+                    statement.setInt(11, cbAgentId.getSelectionModel().getSelectedItem().getAgentId());
+                    statement.setInt(12, Integer.parseInt(tfCusId.getText()));
+
+                    int numRows = statement.executeUpdate();
+                    if (numRows == 0) {
+                        //if update fails
+                        System.out.println("Update failed!");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error!!");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Ooops, there was an error while updating!");
+                        alert.showAndWait();
+                    } else {
+                        //if update success
+                        System.out.println("Update successful!");
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Updated");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Update Successful!");
+                        alert.showAndWait();
+
+                        btnEditCust.setDisable(false);
+                        disableTextfield();
+                        initialize();
+                    }
+                    updateConn.close();
+
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+        });
+
+        //Cancel button function    //By Suvanjan Shrestha
+        btnCancel.setOnMouseClicked(mouseEvent -> {
+            initialize();
+            cbCustomers.setDisable(false);
+        });
     }
+    //----- end of initialize ----------------------------------------------------
+    // methods for Agents - by Lisa Saffel
+    // ------------------------------------------------------------------------------------
+    // Agents - by Lisa Saffel
+    // A method to clear the text fields (clear the displayed text out of them so they appear blank)
+    private void clearAgentTextFields() {
+        tfAgentId.clear();
+        tfAgtFirstName.clear();
+        tfAgtMiddleInitial.clear();
+        tfAgtLastName.clear();
+        tfAgtBusPhone.clear();
+        tfAgtEmail.clear();
+        tfAgtPosition.clear();
+        tfAgencyId.clear();
+    }
+
+    // ---- end of methods for Agents - by Lisa Saffel ---------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------
+    // Agents - by Lisa Saffel
+    // method to enable or disable text fields in the Agent window
+    // The method is passed true to disable the text fields or false to enable the text fields
+    private void disableAgentTextFields(boolean b)
+    {
+        tfAgtFirstName.setDisable(b);
+        tfAgtMiddleInitial.setDisable(b);
+        tfAgtLastName.setDisable(b);
+        tfAgtBusPhone.setDisable(b);
+        tfAgtEmail.setDisable(b);
+        tfAgtPosition.setDisable(b);
+        tfAgencyId.setDisable(b);
+    }
+    // Agents - by Lisa Saffel
+    // sets the initial state of Agents pane to combo box and Add New Agent button enabled
+    // and all other buttons disabled
+    private void initialState()
+    {
+        btnEditAgent.setVisible(true);               // make the edit button visible
+        btnEditAgent.setDisable(true);              // initialize the Edit button to disabled
+        btnSaveAgentUpdates.setDisable(true);              // initialize the Save button to disabled
+        btnAddNewAgent.setDisable(false);           // enable the "Add New Agent" button
+        btnSaveNewAgent.setVisible(false);           // hide the "Save New Agent" button
+        btnAgentCancel.setDisable(true);            // disable the Cancel button
+        cbAgents.setDisable(false);                 // enable the combo box
+        clearAgentTextFields();                          // clear the text fields - make them blank
+        disableAgentTextFields(true);        // A new agent has been selected in the combo box
+    }
+
+    // ---------------------------------------------------------------------------
+
     //Connection to the database
     private Connection connectDB() {
         Connection c=null;
@@ -1070,6 +1828,8 @@ public class Controller {
         }
         return c;
     }
+    //---------------------------------------------------------
+
     //method to disable text fields from Contact
     private void disableContactTextFields(boolean b)
     {
@@ -1088,4 +1848,55 @@ public class Controller {
         tfConCompany.setDisable(b);
         tfConURL.setDisable(b);
     }
+
+    //---------------------------------------------------------
+
+    //Function to disable text fields in Customer form  //By Suvanjan Shrestha
+    private void disableTextfield(){
+        tfCusId.setDisable(true);
+        tfCustFname.setDisable(true);
+        tfCustLname.setDisable(true);
+        tfCustAddress.setDisable(true);
+        tfCustCity.setDisable(true);
+        tfCustProv.setDisable(true);
+        tfCustPostal.setDisable(true);
+        tfCustCountry.setDisable(true);
+        tfCustHomePhone.setDisable(true);
+        tfCustBusPhone.setDisable(true);
+        tfCustEmail.setDisable(true);
+        cbAgentId.setDisable(true);
+    }
+    //---------------------------------------------------------
+
+    //Function to enable text fields in Customer form   //By Suvanjan Shrestha
+    private void enableTextfield(){
+        tfCustFname.setDisable(false);
+        tfCustLname.setDisable(false);
+        tfCustAddress.setDisable(false);
+        tfCustCity.setDisable(false);
+        tfCustProv.setDisable(false);
+        tfCustPostal.setDisable(false);
+        tfCustCountry.setDisable(false);
+        tfCustHomePhone.setDisable(false);
+        tfCustBusPhone.setDisable(false);
+        tfCustEmail.setDisable(false);
+        cbAgentId.setDisable(false);
+    }
+    //---------------------------------------------------------
+    //Function to default text fields and combobox in Customer form //By Suvanjan Shrestha
+    private void clearTexts(){
+        tfCusId.clear();
+        tfCustFname.clear();
+        tfCustLname.clear();
+        tfCustAddress.clear();
+        tfCustCity.clear();
+        tfCustProv.clear();
+        tfCustPostal.clear();
+        tfCustCountry.clear();
+        tfCustHomePhone.clear();
+        tfCustBusPhone.clear();
+        tfCustEmail.clear();
+        cbAgentId.getSelectionModel().select(0);
+    }
+
 }

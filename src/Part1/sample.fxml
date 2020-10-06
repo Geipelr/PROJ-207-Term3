@@ -7,7 +7,9 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -50,7 +52,141 @@
       </Tab>
       <Tab fx:id="tabAgent" text="Agent">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane layoutX="-1.0" layoutY="5.0" prefHeight="366.0" prefWidth="600.0">
+                     <!-- Agent borderpane -->
+                     <bottom>
+                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="562.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnEditAgent" mnemonicParsing="false" text="Edit">
+                                 <HBox.margin>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnSaveAgentUpdates" mnemonicParsing="false" text="Save Updates">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnSaveNewAgent" mnemonicParsing="false" text="Save New Agent">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnAgentCancel" mnemonicParsing="false" text="Cancel">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                     <left>
+                        <VBox prefHeight="269.0" prefWidth="136.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnAddNewAgent" mnemonicParsing="false" text="Add New Agent" />
+                              <Label text="Agent ID:">
+                                 <VBox.margin>
+                                    <Insets top="36.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" text="First Name:">
+                                 <VBox.margin>
+                                    <Insets top="7.57" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="28.0" text="Middle Initial:">
+                                 <VBox.margin>
+                                    <Insets top="7.57" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="45.0" text="Last Name:">
+                                 <VBox.margin>
+                                    <Insets top="7.57" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="63.0" text="Business Phone:">
+                                 <VBox.margin>
+                                    <Insets top="7.57" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="80.0" text="Email:">
+                                 <VBox.margin>
+                                    <Insets top="7.57" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="98.0" text="Position:">
+                                 <VBox.margin>
+                                    <Insets top="7.57" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="116.0" text="Agency ID:">
+                                 <VBox.margin>
+                                    <Insets top="7.57" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" top="30.0" />
+                           </padding>
+                        </VBox>
+                     </left>
+                     <top>
+                        <ComboBox fx:id="cbAgents" prefWidth="150.0" BorderPane.alignment="CENTER" />
+                     </top>
+                     <center>
+                        <VBox prefHeight="264.0" prefWidth="172.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TextField fx:id="tfAgentId" prefHeight="26.0" prefWidth="148.0">
+                                 <VBox.margin>
+                                    <Insets right="30.0" top="56.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfAgtFirstName" layoutX="10.0" layoutY="10.0">
+                                 <VBox.margin>
+                                    <Insets right="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfAgtMiddleInitial" layoutX="10.0" layoutY="61.0">
+                                 <VBox.margin>
+                                    <Insets right="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfAgtLastName" layoutX="10.0" layoutY="87.0">
+                                 <VBox.margin>
+                                    <Insets right="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfAgtBusPhone" layoutX="10.0" layoutY="112.0">
+                                 <VBox.margin>
+                                    <Insets right="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfAgtEmail" layoutX="10.0" layoutY="138.0">
+                                 <VBox.margin>
+                                    <Insets right="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfAgtPosition" layoutX="10.0" layoutY="164.0">
+                                 <VBox.margin>
+                                    <Insets right="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfAgencyId" layoutX="10.0" layoutY="36.0">
+                                 <VBox.margin>
+                                    <Insets right="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets right="30.0" top="30.0" />
+                           </padding>
+                        </VBox>
+                     </center>
+                     <!-- end of Agent borderpane -->
+                  </BorderPane>
+               </children></AnchorPane>
         </content>
       </Tab>
       <Tab fx:id="tabSupplier" text="Supplier">
@@ -99,7 +235,7 @@
                         </ComboBox>
                      </children>
                   </VBox>
-                  <Line endX="101.5999755859375" endY="365.8000183105469" layoutX="-6.0" layoutY="3.0" startX="101.5999755859375" startY="-2.9999871253967285" />
+                  <Line endX="101.5999755859375" endY="475.0" layoutX="-6.0" layoutY="3.0" startX="101.5999755859375" startY="-2.9999871253967285" />
                   <VBox layoutX="96.0" layoutY="7.0" prefHeight="354.0" prefWidth="498.0">
                      <children>
                         <HBox prefHeight="94.0" prefWidth="498.0">
@@ -376,7 +512,236 @@
       </Tab>
       <Tab fx:id="tabCustomer" text="Customer">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane layoutY="55.0" prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label text="Customer Id:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Firstname:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Lastname:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Address:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="City:">
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Province:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Postal code:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Country:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Home Phone:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Bus Phone:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Email:">
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Agent Id:">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </VBox>
+                     </left>
+                     <bottom>
+                        <HBox alignment="CENTER" prefHeight="87.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnCancel" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Cancel">
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                                 <HBox.margin>
+                                    <Insets left="70.0" right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="btnEditCust" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="41.0" text="Edit" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </Button>
+                              <Button fx:id="btnDone" mnemonicParsing="false" text="Done">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </Button>
+                              <Button fx:id="btnSaveCust" mnemonicParsing="false" text="Save" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                                 <effect>
+                                    <Lighting>
+                                       <bumpInput>
+                                          <Shadow />
+                                       </bumpInput>
+                                       <light>
+                                          <Light.Distant />
+                                       </light>
+                                    </Lighting>
+                                 </effect>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
+                     <center>
+                        <VBox prefHeight="346.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TextField fx:id="tfCusId" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustFname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustLname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustAddress" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustCity" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustProv" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustPostal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustCountry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustHomePhone" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustBusPhone" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tfCustEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="246.0">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <ComboBox fx:id="cbAgentId" prefHeight="25.0" prefWidth="246.0" promptText="Select Agent">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="2.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                           </children>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+                  <HBox alignment="CENTER" layoutX="2.0" prefHeight="56.0" prefWidth="391.0">
+                     <children>
+                        <ComboBox fx:id="cbCustomers" prefHeight="25.0" prefWidth="280.0" promptText="Select Customer">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Button fx:id="btnAddCust" mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="Add Customer" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children></AnchorPane>
         </content>
       </Tab>
   </tabs>
