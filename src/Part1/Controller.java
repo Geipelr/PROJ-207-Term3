@@ -5,8 +5,6 @@
 
 package Part1;
 
-import com.sun.javafx.tk.AppletWindow;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -51,7 +49,7 @@ public class Controller {
     private Button btnDone;
 
     @FXML
-    private Button btnCancel;
+    private Button btnCancelCust;
 
     @FXML
     private TextField tfCusId;
@@ -436,7 +434,7 @@ public class Controller {
         //Customer  //By Suvanjan Shrestha
         assert cbCustomers != null : "fx:id=\"cbCustomers\" was not injected: check your FXML file 'custdisplay.fxml'.";
         assert btnAddCust != null : "fx:id=\"btnAddCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
-        assert btnCancel != null : "fx:id=\"btnCancel\" was not injected: check your FXML file 'custdisplay.fxml'.";
+        assert btnCancelCust != null : "fx:id=\"btnCancelCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
         assert btnEditCust != null : "fx:id=\"btnEditCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
         assert btnSaveCust != null : "fx:id=\"btnSaveCust\" was not injected: check your FXML file 'custdisplay.fxml'.";
         assert btnDone != null : "fx:id=\"btnDone\" was not injected: check your FXML file 'custdisplay.fxml'.";
@@ -1552,7 +1550,7 @@ public class Controller {
         btnSaveCust.setVisible(false);
         btnEditCust.setVisible(false);
         btnEditCust.setDisable(false);
-        btnCancel.setVisible(false);
+        btnCancelCust.setVisible(false);
 
         //Creating connection and list of customers     //By Suvanjan Shrestha
         Connection cusConnection = connectDB();
@@ -1632,7 +1630,7 @@ public class Controller {
             btnDone.setVisible(true);
             btnSaveCust.setVisible(false);
             btnEditCust.setVisible(false);
-            btnCancel.setVisible(true);
+            btnCancelCust.setVisible(true);
             cbCustomers.setDisable(true);
             enableTextfield();
             clearTexts();
@@ -1701,7 +1699,7 @@ public class Controller {
                         btnDone.setVisible(false);
                         btnSaveCust.setVisible(false);
                         btnEditCust.setVisible(true);
-                        btnCancel.setVisible(false);
+                        btnCancelCust.setVisible(false);
                         cbCustomers.setDisable(false);
                     }
                 }
@@ -1763,7 +1761,7 @@ public class Controller {
         });
 
         //Cancel button function    //By Suvanjan Shrestha
-        btnCancel.setOnMouseClicked(mouseEvent -> {
+        btnCancelCust.setOnMouseClicked(mouseEvent -> {
             initialize();
             cbCustomers.setDisable(false);
         });
